@@ -1,0 +1,12 @@
+<script src="{{url('public/plugins')}}/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="{{url('public/plugins')}}/bower_components/sidebar-nav/dist/sidebar-nav.min.js"></script>
+<script src="{{url('public/js')}}/jquery.slimscroll.js"></script>
+<script src="{{url('public/js')}}/waves.js"></script>
+<script src="{{url('public/plugins')}}/bower_components/waypoints/lib/jquery.waypoints.js"></script>
+<script src="{{url('public/plugins')}}/bower_components/counterup/jquery.counterup.min.js"></script>
+<script src="{{url('public/plugins')}}/bower_components/jquery-sparkline/jquery.sparkline.min.js"></script>
+<script src="{{url('public/plugins')}}/DataTables/datatables.min.js"></script>
+<script src="{{url('public/js')}}/pdfExport.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
+<script src="{{url('public/js')}}/custom.min.js"></script>
+<script src="{{url('public/js')}}/fontAwesom.js"></script>
