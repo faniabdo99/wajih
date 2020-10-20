@@ -24,7 +24,7 @@ class AttendController extends Controller{
                 'name' => $TheEmployee->name,
                 'work_days' => $ThisMonthWorkingDays,
                 'off_hours' => $ThisMonthLateHours,
-                'salary' => $ThisMonthSalary,
+                'salary' => ceil(intval($ThisMonthSalary)/5)*5,
                 'cutoff' => $ThisMonthCutoffs,
                 'additions' => $ThisMonthAdditions,
                 'loans' => $ThisMonthLoans

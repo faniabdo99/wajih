@@ -40,6 +40,7 @@
             <div class="col-lg-10">
                 <h3 class="report-title">{{$ReportType ?? ''}}</h3>
                 <p>{{$ReportDate ?? ''}}</p>
+                <p>المطلوب من السيد : <b class="company-name">{{$ReportCustomer->name}}</b></p>
             </div>
         </div>
         <div class="row">
@@ -60,20 +61,20 @@
                             </thead>
                             <tbody>
                                 @forelse($MergedData as $Item)
-                                @php 
+                                @php
                                     $CustomerAccount = $ReportCustomer->CurrentStates('ItemReport' , $Item->created_at);
                                 @endphp
                                 <tr>
                                     <td>@if($Item->pieces) بيع @else دفعة @endif</td>
                                     <td>@if($Item->pieces){{$Item->total}}@endif</td>
                                     <td>@if(!$Item->pieces){{$Item->amount}}@endif</td>
-                                    <td>@if($Item->pieces){{$Item->pieces}}@else لا ينطبق @endif</td>
-                                    <td>@if($Item->pieces){{$Item->price_per_piece}}@else لا ينطبق @endif</td>
+                                    <td>@if($Item->pieces){{$Item->pieces}}@endif</td>
+                                    <td>@if($Item->pieces){{$Item->price_per_piece}}@endif</td>
                                     <td>{{$CustomerAccount['rassed']}}</td>
                                     <td>{{$Item->created_at->format('Y-m-d')}}</td>
                                     <td>{{$Item->notes}}</td>
                                 </tr>
-                                @empty 
+                                @empty
                                 <p>لا يوجد بيانات</p>
                                 @endforelse
                             </tbody>
@@ -93,7 +94,8 @@
             <div class="row">
                 <div class="col-md-12">
                     <h3>الرصيد:</h3>
-                    <p style="font-size: 16px;font-weight:bold;">@if($CurrentStates['rassed'] < 0) مدين {{-$CurrentStates['rassed'] }} @else دائن @endif  </p>
+
+                    <p style="font-size: 16px;font-weight:bold;">@if($CurrentStates['rassed'] < 0) مدين : {{-$CurrentStates['rassed'] }} @else دائن : {{$CurrentStates['rassed']}} @endif  </p>
                 </div>
             </div>
         </div>

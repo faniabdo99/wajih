@@ -11,7 +11,7 @@
     <!-- Favicon -->
     <link rel="shortcut icon" href="@auth {{auth()->user()->main_image}} @endauth" type="image/x-icon">
     <!-- Bootstrap Core CSS -->
-    <link href="{{url('public/css/')}}/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{url('public/bootstrap/')}}/css/bootstrap.min.css" rel="stylesheet">
     <!-- FontAwesome -->
     {{-- <link rel="stylesheet" href="{{url('public/css/')}}/fontAwesome.css"/> --}}
     <!-- Menu CSS -->
@@ -19,6 +19,7 @@
     <script src="{{url('public/plugins')}}/DataTables/datatables.min.css"></script>
     <!-- Custom CSS -->
     <link href="{{url('public/css')}}/style.css" rel="stylesheet">
+    <link href="{{url('public/css')}}/select2.min.css" rel="stylesheet">
     <!-- color CSS -->
     <link href="{{url('public/css')}}/colors/default.css" id="theme" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->

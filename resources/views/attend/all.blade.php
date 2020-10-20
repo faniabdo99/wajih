@@ -24,6 +24,7 @@
                                     <table class="table">
                                         <thead>
                                             <tr>
+                                                <th style="display:none;"></th>
                                                 <th class="text-right">الموظف</th>
                                                 <th class="text-right">أيام العمل</th>
                                                 <th class="text-right">ساعات التأخير</th>
@@ -37,10 +38,11 @@
                                         <tbody>
                                             @php $TotalSalaries = 0; @endphp
                                             @forelse($FinalSalaryArray as $SingleEmployeeData)
-                                            @php 
+                                            @php
                                                 $TotalSalaries += $SingleEmployeeData['salary'];
                                             @endphp
                                             <tr>
+                                               <td style="display:none;">0</td>
                                                 <td>{{$SingleEmployeeData['name']}}</td>
                                                 <td>{{$SingleEmployeeData['work_days']}}</td>
                                                 <td>{{$SingleEmployeeData['off_hours']}}</td>
@@ -50,11 +52,12 @@
                                                 <td><b class="final-salary">{{$SingleEmployeeData['salary']}}</b></td>
                                                 <td style="display:none;"></td>
                                             </tr>
-                                            @empty 
+                                            @empty
                                             <p>لا يوجد بيانات في النظام</p>
                                             @endforelse
                                             <tr>
-                                                <td style="visibility: hidden;">ي</td>
+                                               <td style="display:none;">1</td>
+                                                <td style="visibility: hidden;"></td>
                                                 <td style="visibility: hidden;"></td>
                                                 <td style="visibility: hidden;"></td>
                                                 <td style="visibility: hidden;"></td>
@@ -66,6 +69,41 @@
                                         </tbody>
                                     </table>
                                 </div>
+                            </div>
+                            <div class="white-box">
+                              <h3 class="box-title">تقرير مستحقات الموظفين</h3>
+                              <form class="form-horizontal form-material" action="{{route('reports.employees')}}" method="post">
+                                <div class="form-group">
+                                  @csrf
+                                    <label class="col-md-12">التاريخ (أسبوع - شهر - سنة)</label>
+                                     <div class="col-md-4">
+                                        <select name="year" required class="form-control form-control-line">
+                                            @for($i=2020 ; $i<2025 ; $i++)
+                                            <option value="{{$i}}">{{$i}}</option>
+                                            @endfor
+                                        </select>
+                                     </div>
+                                     <div class="col-md-4">
+                                        <select name="month" required class="form-control form-control-line">
+                                            @for($i=1 ; $i<13 ; $i++)
+                                              <option @if(date('n') == $i) selected @endif value="{{$i}}">{{$i}}</option>
+                                            @endfor
+                                        </select>
+                                     </div>
+                                     <div class="col-md-4">
+                                        <select name="week_number" required class="form-control form-control-line">
+                                            @for($i=1 ; $i<5 ; $i++)
+                                            <option value="{{$i}}">{{$i}}</option>
+                                            @endfor
+                                        </select>
+                                     </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <button type="submit" target="_blank" class="btn btn-success">طباعة التقرير</button>
+                                    </div>
+                                </div>
+                              </form>
                             </div>
                             <div class="white-box">
                                 <h3 class="box-title">بيانات الحضور ({{$MainData->count()}})</h3>
@@ -96,7 +134,7 @@
                                                 <td>{{$Item->work_days}}</td>
                                                 <td class="no-print"><a class="btn btn-primary" href="{{route('attend.edit.get' , $Item->id)}}">تعديل</a> <a class="btn btn-danger" href="{{route('attend.delete' , $Item->id)}}">حذف</a></td>
                                             </tr>
-                                            @empty 
+                                            @empty
                                             <p>لا يوجد بيانات في النظام</p>
                                             @endforelse
                                         </tbody>

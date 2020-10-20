@@ -4,13 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Expense;
+use App\Supplier;
+use App\SuppliersPayment;
 class ExpensesController extends Controller{
     public function getHome(){
         $MainData = Expense::latest()->get();
-        return view('expneses.all' , compact('MainData'));
+        $AllPayments = SuppliersPayment::latest()->get();
+        return view('expneses.all' , compact('MainData' , 'AllPayments'));
     }
     public function getNew(){
-        return view('expneses.new');
+        $Suppliers = Supplier::where('is_active' , 1)->latest()->get();
+        return view('expneses.new' , compact('Suppliers'));
     }
     public function postNew(Request $r){
         $EmployeeData = $r->all();
@@ -21,7 +25,8 @@ class ExpensesController extends Controller{
     }
     public function getEdit($id){
         $TheExpens = Expense::findOrFail($id);
-        return view('expneses.edit' , compact('TheExpens'));
+        $Suppliers = Supplier::where('is_active' , 1)->latest()->get();
+        return view('expneses.edit' , compact('TheExpens' , 'Suppliers'));
     }
     public function postEdit(Request $r , $id){
         $TheExpens = Expense::findOrFail($id);

@@ -17,18 +17,19 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="white-box">
-                                <h3 class="box-title">كشف حساب حسب التاريخ</h3>  
+                                <h3 class="box-title">كشف حساب حسب التاريخ</h3>
                                 <form class="form-horizontal form-material" action="{{route('reports.client')}}" method="post">
                                     @csrf
                                     <div class="form-group">
                                         <label class="col-md-12">العميل</label>
                                         <div class="col-md-12">
                                             <select name="customer_id" required class="form-control form-control-line">
+                                                <option value="">ابحث عن عميل</option>
                                                 @forelse ($Customers as $Customer)
                                                 <option value="{{$Customer->id}}">{{$Customer->name}}</option>
-                                                @empty 
+                                                @empty
                                                 <p>لا يوجد عملاء في النظام</p>
-                                                @endforelse                             
+                                                @endforelse
                                             </select>
                                          </div>
                                     </div>
@@ -49,21 +50,22 @@
                                             <button type="submit" class="btn btn-success">كشف حساب</button>
                                         </div>
                                     </div>
-                                </form>                          
+                                </form>
                             </div>
                             <div class="white-box">
-                                <h3 class="box-title">كشف حساب شهري</h3>  
+                                <h3 class="box-title">كشف حساب شهري</h3>
                                 <form class="form-horizontal form-material" action="{{route('reports.client')}}" method="post">
                                     @csrf
                                     <div class="form-group">
                                         <label class="col-md-12">العميل</label>
                                         <div class="col-md-12">
                                             <select name="customer_id" required class="form-control form-control-line">
+                                                <option value="">ابحث عن عميل</option>
                                                 @forelse ($Customers as $Customer)
                                                 <option value="{{$Customer->id}}">{{$Customer->name}}</option>
-                                                @empty 
+                                                @empty
                                                 <p>لا يوجد عملاء في النظام</p>
-                                                @endforelse                             
+                                                @endforelse
                                             </select>
                                          </div>
                                     </div>
@@ -87,7 +89,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="white-box">
-                                    <h3 class="box-title">كشف حساب شهري للشركة</h3>  
+                                    <h3 class="box-title">كشف حساب شهري للشركة</h3>
                                     <form class="form-horizontal form-material" action="{{route('reports.company')}}" method="post">
                                         @csrf
                                         <div class="form-group">

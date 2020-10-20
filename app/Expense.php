@@ -16,4 +16,7 @@ class Expense extends Model{
         ];
         return $Resultes[$this->type];
     }
+    public function Supplier(){
+      return $this->belongsTo(Supplier::class , 'supplier_id');
+    }
 }

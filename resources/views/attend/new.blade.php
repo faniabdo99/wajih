@@ -24,9 +24,10 @@
                                         <label class="col-md-12">الموظف</label>
                                         <div class="col-sm-12">
                                             <select name="employee_id" required class="form-control form-control-line">
+                                              <option value="">ابحث عن موظف</option>
                                                 @forelse($Employyes as $Employee)
                                                 <option value="{{$Employee->id}}">{{$Employee->name}}</option>
-                                                @empty 
+                                                @empty
                                                 <p>لا يوجد موظفين في النظام</p>
                                                 @endforelse
                                             </select>

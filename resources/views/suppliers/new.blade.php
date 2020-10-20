@@ -17,43 +17,30 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="white-box">
-                                <h3 class="box-title font-weight-bold">اضافة دفعة</h3>
-                                <form class="form-horizontal form-material" action="{{route('payments.new.post')}}" method="post">
+                                <h3 class="box-title font-weight-bold">اضافة مورد</h3>
+                                <form class="form-horizontal form-material" action="{{route('suppliers.new.post')}}" method="post">
                                     @csrf
                                     <div class="form-group">
-                                        <label class="col-md-12">العميل</label>
+                                        <label class="col-md-12">الاسم</label>
                                         <div class="col-md-12">
-                                            <select name="customer_id" required class="form-control form-control-line">
-                                              <option value="">ابحث عن عميل</option>
-                                                @forelse ($Customers as $Customer)
-                                                <option value="{{$Customer->id}}">{{$Customer->name}}</option>
-                                                @empty
-                                                <p>لا يوجد عملاء في النظام</p>
-                                                @endforelse
-                                            </select>
+                                            <input required type="text" placeholder="أدخل اسم العميل هنا" name="name" class="form-control form-control-line">
                                          </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-md-12">القيمة</label>
+                                        <label class="col-md-12">المنتجات المتوفرة</label>
                                         <div class="col-md-12">
-                                            <input required type="number" step="0.1" placeholder="أدخل القيمة هنا بالأرقام" name="amount" class="form-control form-control-line">
+                                            <input type="text" placeholder="أدخل منتجات المورد هنا" name="goods" class="form-control form-control-line">
                                          </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-md-12">تاريخ الدفعة</label>
+                                        <label class="col-md-12">رقم الجوال</label>
                                         <div class="col-md-12">
-                                            <input required type="date" placeholder="تاريخ الدفعة" name="date" class="form-control form-control-line">
-                                         </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-12">ملاحظات</label>
-                                        <div class="col-md-12">
-                                            <textarea rows="6" placeholder="أدخل الملاحظات المطلوبة" name="notes" class="form-control form-control-line"></textarea>
+                                            <input type="number" placeholder="أدخل رقم الجوال هنا" name="phone_number" class="form-control form-control-line">
                                          </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="col-sm-12">
-                                            <button type="submit" class="btn btn-success">اضافة فاتورة</button>
+                                            <button type="submit" class="btn btn-success">اضافة مورد</button>
                                         </div>
                                     </div>
                                 </form>

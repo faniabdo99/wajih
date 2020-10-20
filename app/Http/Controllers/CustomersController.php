@@ -29,6 +29,6 @@ class CustomersController extends Controller{
     }
     public function delete($id){
         $TheCustomer = Customer::findOrFail($id)->update(['is_active' => 0]);
-        return redirect()->route('customers.all')->withSuccess('تم حذف الموظف بنجاح');
+        return redirect()->route('customers.all')->withSuccess('تم حذف العميل بنجاح');
     }
 }

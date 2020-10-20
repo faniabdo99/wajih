@@ -31,7 +31,7 @@ class PaymentsController extends Controller{
         $PaymentData['company_id'] = 1;
         $PaymentData['created_at'] = Carbon::create($r->date.date('H:i:s'));
         $payments->update($PaymentData);
-        return redirect()->route('payments.all')->withSuccess('تم تحديث بيانات الفاتورة بنجاح');
+        return redirect()->route('payments.all')->withSuccess('تم تحديث بيانات الدفعة بنجاح');
     }
     public function delete($id){
         $TheEmployee = Payment::findOrFail($id)->delete();

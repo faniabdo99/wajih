@@ -1,5 +1,4 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
 Route::get('login' , 'AuthController@getLogin')->name('login.get');
 Route::post('login' , 'AuthController@postLogin')->name('login.post');
@@ -8,7 +7,6 @@ Route::get('/', 'HomeController@getHome')->name('home');
 Route::get('my-account' , 'AuthController@getEdit')->name('myAccount.edit.get');
 Route::post('my-account' , 'AuthController@postEdit')->name('myAccount.edit.post');
 Route::get('logout' , 'AuthController@logout')->name('logout');
-
 Route::prefix('employees')->group(function(){
     Route::get('/' , 'EmployeesController@getHome')->name('employee.all');
     Route::get('new' , 'EmployeesController@getNew')->name('employee.new.get');
@@ -32,6 +30,22 @@ Route::prefix('customers')->group(function(){
     Route::get('edit/{id}' , 'CustomersController@getEdit')->name('customers.edit.get');
     Route::post('edit/{id}' , 'CustomersController@postEdit')->name('customers.edit.post');
     Route::get('delete/{id}' , 'CustomersController@delete')->name('customers.delete');
+});
+Route::prefix('suppliers')->group(function(){
+    Route::get('/' , 'SuppliersController@getHome')->name('suppliers.all');
+    Route::get('new' , 'SuppliersController@getNew')->name('suppliers.new.get');
+    Route::post('new' , 'SuppliersController@postNew')->name('suppliers.new.post');
+    Route::get('edit/{id}' , 'SuppliersController@getEdit')->name('suppliers.edit.get');
+    Route::post('edit/{id}' , 'SuppliersController@postEdit')->name('suppliers.edit.post');
+    Route::get('delete/{id}' , 'SuppliersController@delete')->name('suppliers.delete');
+});
+
+Route::prefix('suppliers-payments')->group(function(){
+    Route::get('new' , 'SuppliersPaymentsController@getNew')->name('suppliersPayments.new.get');
+    Route::post('new' , 'SuppliersPaymentsController@postNew')->name('suppliersPayments.new.post');
+    Route::get('edit/{id}' , 'SuppliersPaymentsController@getEdit')->name('suppliersPayments.edit.get');
+    Route::post('edit/{id}' , 'SuppliersPaymentsController@postEdit')->name('suppliersPayments.edit.post');
+    Route::get('delete/{id}' , 'SuppliersPaymentsController@delete')->name('suppliersPayments.delete');
 });
 Route::prefix('expenses')->group(function(){
     Route::get('/' , 'ExpensesController@getHome')->name('expenses.all');
@@ -60,4 +74,5 @@ Route::prefix('payments')->group(function(){
 Route::get('reports' , 'ReportsController@getIndex')->name('reports.home');
     Route::post('reports/client' , 'ReportsController@clientReport')->name('reports.client');
     Route::post('reports/company' , 'ReportsController@companyReport')->name('reports.company');
+    Route::post('reports/employyes' , 'ReportsController@employeesReport')->name('reports.employees');
 });

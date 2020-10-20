@@ -7,6 +7,8 @@ use App\Customer;
 use App\Sales;
 use App\Expense;
 use App\Payment;
+use App\Attend;
+use App\Employee;
 class ReportsController extends Controller{
     public function getIndex (){
         $Customers = Customer::where('is_active' , 1)->latest()->get();
@@ -52,5 +54,37 @@ class ReportsController extends Controller{
         $DateTo = date($r->end_date);
         $SalesList = Sales::where('customer_id' , $r->customer_id)->whereBetween('created_at' , [$DateFrom , $DateTo])->latest()->get();
         return view('reports.customer' , compact('SalesList'));
+    }
+    public function employeesReport(Request $r){
+      $RequestData = $r->all();
+      $MainData = Attend::where('month' , $r->month)->where('week_number' , $r->week_number)->where('year' , $r->year)->latest()->get();
+      //Get the employees
+      $Employees = Employee::where('is_active' , 1)->pluck('id');
+      $FinalSalaryArray = [];
+      foreach($Employees as $Employee){
+          $TheEmployee = Employee::find($Employee);
+          $Year = $RequestData['year'];
+          $Month = $RequestData['month'];
+          $WeekNumber = $RequestData['week_number'];
+          //Check How many days this gut worked
+          $ThisMonthWorkingDays = Attend::where('month' , $Month)->where('year' , $Year)->where('week_number' , $WeekNumber)->where('employee_id' , $Employee)->sum('work_days');
+          $ThisMonthLoans = Attend::where('month' , $Month)->where('year' , $Year)->where('week_number' , $WeekNumber)->where('employee_id' , $Employee)->sum('loans');
+          $ThisMonthAdditions = Attend::where('month' , $Month)->where('year' , $Year)->where('week_number' , $WeekNumber)->where('employee_id' , $Employee)->sum('additions');
+          $ThisMonthCutoffs = Attend::where('month' , $Month)->where('year' , $Year)->where('week_number' , $WeekNumber)->where('employee_id' , $Employee)->sum('cutoff');
+          $ThisMonthLateHours = Attend::where('month' , $Month)->where('year' , $Year)->where('week_number' , $WeekNumber)->where('employee_id' , $Employee)->sum('off_hours');
+          $ThisMonthSalary = (($ThisMonthWorkingDays * $TheEmployee->salary_day) + $ThisMonthAdditions) - (($ThisMonthLoans) + ($ThisMonthCutoffs)) - ($ThisMonthLateHours * $TheEmployee->salary_hour);
+          $EmployeeSalaryArray = [
+              'name' => $TheEmployee->name,
+              'work_days' => $ThisMonthWorkingDays,
+              'off_hours' => $ThisMonthLateHours,
+              'salary' => ceil(intval($ThisMonthSalary)/5)*5,
+              'cutoff' => $ThisMonthCutoffs,
+              'additions' => $ThisMonthAdditions,
+              'loans' => $ThisMonthLoans
+          ];
+          array_push($FinalSalaryArray,$EmployeeSalaryArray );
+        }
+
+      return view('reports.employees' , compact('RequestData' , 'FinalSalaryArray'));
     }
 }

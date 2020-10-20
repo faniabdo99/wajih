@@ -14,13 +14,6 @@ class Customer extends Model{
                     return ($item->pieces * $item->price_per_piece);
                 });
                 $HePaid = intval(Payment::where('customer_id' , $this->id)->where('created_at' , '<=' , $FormattedDate)->sum('amount'));
-            // }else{
-            //     $HeOweUs = Sales::where('customer_id' , $this->id)->whereDate('created_at' , '>=' , $StartDate)->whereDate('created_at' , '<=' , $EndDate)->get()->map(function($item){
-            //         return ($item->pieces * $item->price_per_piece);
-            //     });
-            //     $HePaid = intval(Payment::where('customer_id' , $this->id)->whereDate('created_at' , '>=' , $StartDate)->whereDate('created_at' , '<=' , $EndDate)->sum('amount'));
-            // }
- 
         }elseif($ReportType == 'MonthReport'){
             if($Date <= 9){
                 $Date = '0'.$Date;
@@ -45,5 +38,11 @@ class Customer extends Model{
         ];
         // dd($Data);
         return $Data;
+    }
+    public function Payments(){
+      return $this->hasMany(Payment::class , 'customer_id');
+    }
+    public function Sales(){
+      return $this->hasMany(Sales::class , 'customer_id');
     }
 }

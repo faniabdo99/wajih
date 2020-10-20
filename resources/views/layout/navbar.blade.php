@@ -11,7 +11,6 @@
                     <li>
                         <a class="profile-pic" href="{{route('myAccount.edit.get')}}"> <b class="hidden-xs">{{auth()->user()->company_name}}</b> <img src="{{auth()->user()->main_image}}" alt="user-img" width="36" class="img-circle"></a>
                     </li>
-                
                     @endauth
                 </ul>
             </div>
@@ -45,6 +44,9 @@
                         <a href="{{route('payments.all')}}"><i class="fas fa-money-bill-alt" aria-hidden="true"></i>الدفعات</a>
                     </li>
                     <li>
+                        <a href="{{route('suppliers.all')}}"><i class="fas fa-parachute-box" aria-hidden="true"></i>الموردين</a>
+                    </li>
+                    <li>
                         <a href="{{route('expenses.all')}}"><i class="fas fa-shopping-cart" aria-hidden="true"></i>المشتريات</a>
                     </li>
                     <li>
@@ -53,16 +55,16 @@
                     <li>
                         <a href="{{route('reports.home')}}"><i class="fas fa-file-pdf " aria-hidden="true"></i>التقارير </a>
                     </li>
-                    @auth 
+                    @auth
                     <li>
                         <a href="{{route('logout')}}"><i class="fas fa-sign-out-alt" aria-hidden="true"></i>تسجيل الخروج </a>
                     </li>
                     @endauth
-                    
+
                 </ul>
-              
+
             </div>
-            
+
         </div>
         <!-- ============================================================== -->
         <!-- End Left Sidebar -->

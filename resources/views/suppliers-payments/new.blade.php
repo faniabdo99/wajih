@@ -1,6 +1,7 @@
 @include('layout.head')
+
 <body class="fix-header">
-     @include('layout.preloader')
+    @include('layout.preloader')
     <!-- ============================================================== -->
     <!-- Wrapper -->
     <!-- ============================================================== -->
@@ -17,43 +18,38 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="white-box">
-                                <h3 class="box-title font-weight-bold">اضافة دفعة</h3>
-                                <form class="form-horizontal form-material" action="{{route('payments.new.post')}}" method="post">
+                                <h3 class="box-title font-weight-bold">اضافة فاتورة مشتريات</h3>
+                                <form class="form-horizontal form-material" action="{{route('suppliersPayments.new.post')}}" method="post">
                                     @csrf
                                     <div class="form-group">
-                                        <label class="col-md-12">العميل</label>
+                                        <label class="col-md-12">المورد</label>
                                         <div class="col-md-12">
-                                            <select name="customer_id" required class="form-control form-control-line">
-                                              <option value="">ابحث عن عميل</option>
-                                                @forelse ($Customers as $Customer)
-                                                <option value="{{$Customer->id}}">{{$Customer->name}}</option>
+                                            <select required class="form-control form-control-line" name="supplier_id">
+                                                <option value="">ابحث عن مورد</option>
+                                                @forelse($Suppliers as $Supplier)
+                                                <option value="{{$Supplier->id}}">{{$Supplier->name}}</option>
                                                 @empty
-                                                <p>لا يوجد عملاء في النظام</p>
+                                                <p>لا يوجد بيانات في النظام</p>
                                                 @endforelse
                                             </select>
-                                         </div>
+                                        </div>
                                     </div>
+
                                     <div class="form-group">
                                         <label class="col-md-12">القيمة</label>
                                         <div class="col-md-12">
-                                            <input required type="number" step="0.1" placeholder="أدخل القيمة هنا بالأرقام" name="amount" class="form-control form-control-line">
-                                         </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-12">تاريخ الدفعة</label>
-                                        <div class="col-md-12">
-                                            <input required type="date" placeholder="تاريخ الدفعة" name="date" class="form-control form-control-line">
-                                         </div>
+                                            <input required type="number" placeholder="أدخل القيمة هنا بالأرقام" name="amount" class="form-control form-control-line">
+                                        </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-12">ملاحظات</label>
                                         <div class="col-md-12">
                                             <textarea rows="6" placeholder="أدخل الملاحظات المطلوبة" name="notes" class="form-control form-control-line"></textarea>
-                                         </div>
+                                        </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="col-sm-12">
-                                            <button type="submit" class="btn btn-success">اضافة فاتورة</button>
+                                            <button type="submit" class="btn btn-success">اضافة دفعة</button>
                                         </div>
                                     </div>
                                 </form>

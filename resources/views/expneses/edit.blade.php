@@ -22,6 +22,19 @@
                                 <form class="form-horizontal form-material" action="{{route('expenses.edit.post' , $TheExpens->id)}}" method="post">
                                     @csrf
                                     <div class="form-group">
+                                      <label class="col-md-12">المورد</label>
+                                      <div class="col-md-12">
+                                        <select required class="form-control form-control-line" name="supplier_id">
+                                          <option value="">ابحث عن مورد</option>
+                                          @forelse($Suppliers as $Supplier)
+                                            <option value="{{$Supplier->id}}">{{$Supplier->name}}</option>
+                                          @empty
+                                            <p>لا يوجد بيانات في النظام</p>
+                                          @endforelse
+                                        </select>
+                                      </div>
+                                    </div>
+                                    <div class="form-group">
                                         <label class="col-md-12">العنوان</label>
                                         <div class="col-md-12">
                                             <input type="text" placeholder="أدخل عنوان الفاتورة هنا" value="{{$TheExpens->title}}" name="title" class="form-control form-control-line">
@@ -46,7 +59,6 @@
                                             <input required type="number" placeholder="أدخل القيمة هنا بالأرقام" value="{{$TheExpens->amount}}"  name="amount" class="form-control form-control-line">
                                          </div>
                                     </div>
-                             
                                     <div class="form-group">
                                         <label class="col-md-12">ملاحظات</label>
                                         <div class="col-md-12">

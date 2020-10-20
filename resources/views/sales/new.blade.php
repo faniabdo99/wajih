@@ -30,11 +30,12 @@
                                         <label class="col-md-12">العميل</label>
                                         <div class="col-md-12">
                                             <select name="customer_id" required class="form-control form-control-line">
+                                                <option value="">ابحث عن عميل</option>
                                                 @forelse ($Customers as $Customer)
                                                 <option value="{{$Customer->id}}">{{$Customer->name}}</option>
-                                                @empty 
+                                                @empty
                                                 <p>لا يوجد عملاء في النظام</p>
-                                                @endforelse                             
+                                                @endforelse
                                             </select>
                                          </div>
                                     </div>

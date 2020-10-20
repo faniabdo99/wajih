@@ -28,9 +28,9 @@
                                                 <option selected value="{{$ThePayment->Customer->id}}">{{$ThePayment->Customer->name}}</option>
                                                 @forelse ($Customers as $Customer)
                                                 <option value="{{$Customer->id}}">{{$Customer->name}}</option>
-                                                @empty 
+                                                @empty
                                                 <p>لا يوجد عملاء في النظام</p>
-                                                @endforelse                             
+                                                @endforelse
                                             </select>
                                          </div>
                                     </div>
