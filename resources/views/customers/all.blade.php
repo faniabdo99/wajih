@@ -32,7 +32,7 @@
                                 <h3 class="box-title">العملاء ({{$MainData->count()}})</h3>
                                 <a class="btn btn-success" href="{{route('customers.new.get')}}">اضافة عميل جديد</a>
                                 <div class="table-responsive">
-                                    <table class="table">
+                                    <table class="table" id="customers-table">
                                         <thead>
                                             <tr>
                                                 <th class="text-right">#</th>
@@ -89,9 +89,9 @@
     <!-- ============================================================== -->
     @include('layout.scripts')
     <script type="text/javascript">
-        $('.toggle-report').click(function() {
-            $(this).next('.customer-report-row').slideToggle('fast');
-        });
+    $('#customers-table').on('click','.toggle-report',function () {
+      jQuery(this).next('.customer-report-row').slideToggle('fast');
+    });
     </script>
 </body>
 
